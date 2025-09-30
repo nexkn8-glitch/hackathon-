@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Fetch URL (SSRF)</h2>
+  <form method="post">
+    <input type="text" name="url" placeholder="http://127.0.0.1:5000/admin?admin=1">
+    <button>Fetch</button>
+  </form>
+  {% if body %}
+    <pre>{{ body|e }}</pre>
+  {% endif %}
+{% endblock %}

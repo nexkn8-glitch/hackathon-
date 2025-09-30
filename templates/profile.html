@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Profile</h2>
+  {% if user %}
+    <p><strong>ID:</strong> {{ user['id'] }}</p>
+    <p><strong>Username:</strong> {{ user['username'] }}</p>
+    <p><strong>Bio (unsafe HTML allowed):</strong> {{ user['bio']|safe }}</p>
+    {% if secret %}
+      <div class="msg"><strong>Secret:</strong> {{ secret }}</div>
+    {% endif %}
+  {% else %}
+    <p>User not found.</p>
+  {% endif %}
+  <p>Try visiting <code>/profile?id=2</code> or other IDs (IDOR).</p>
+{% endblock %}

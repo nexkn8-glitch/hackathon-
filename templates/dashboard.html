@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Dashboard</h2>
+  {% if msg %}<div class="msg">{{ msg }}</div>{% endif %}
+  <form method="post">
+    <label>Post a comment (Stored XSS allowed):</label>
+    <textarea name="content" rows="3"></textarea>
+    <button>Post</button>
+  </form>
+  <h3>Recent Comments</h3>
+  {% for c in comments %}
+    <div class="card">
+      <strong>{{ c['username'] }}</strong>
+      <div>{{ c['content']|safe }}</div>
+    </div>
+  {% endfor %}
+{% endblock %}

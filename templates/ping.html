@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Ping a host</h2>
+  <form method="post">
+    <input type="text" name="target" placeholder="8.8.8.8 or example.com">
+    <button>Ping</button>
+  </form>
+  {% if output %}
+    <pre>{{ output }}</pre>
+  {% endif %}
+  <p>Note: command injection possible here.</p>
+{% endblock %}

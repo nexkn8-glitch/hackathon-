@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Login</h2>
+  {% if error %}<div class="msg error">{{ error }}</div>{% endif %}
+  <form method="post">
+    <label>Username</label>
+    <input type="text" name="username">
+    <label>Password</label>
+    <input type="password" name="password">
+    <button>Login</button>
+  </form>
+  <p>Hint: SQLi possible: <code>' OR '1'='1</code></p>
+{% endblock %}

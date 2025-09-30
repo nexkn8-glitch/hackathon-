@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Insecure Upload</h2>
+  {% if msg %}<div class="msg">{{ msg }}</div>{% endif %}
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button>Upload</button>
+  </form>
+  <h3>Files</h3>
+  <ul>
+    {% for f in files %}
+      <li><a href="/static/uploads/{{ f }}">{{ f }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

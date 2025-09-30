@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Register</h2>
+  {% if msg %}<div class="msg">{{ msg }}</div>{% endif %}
+  <form method="post">
+    <label>Username</label>
+    <input type="text" name="username">
+    <label>Password</label>
+    <input type="password" name="password">
+    <button>Register</button>
+  </form>
+{% endblock %}

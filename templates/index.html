@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Welcome to the Insecure Web App</h2>
+  <p>Search anything (try XSS):</p>
+  <form method="get" action="/">
+    <input type="text" name="q" value="{{ q }}">
+    <button>Search</button>
+  </form>
+  {% if q %}
+    <div class="card">
+      <h3>Results for: {{ q|safe }}</h3>
+      <p>(Reflected XSS: the query is not escaped.)</p>
+    </div>
+  {% endif %}
+{% endblock %}
