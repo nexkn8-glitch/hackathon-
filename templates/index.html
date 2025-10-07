@@ -1,15 +1,83 @@
-{% extends "base.html" %}
-{% block content %}
-  <h2>Welcome to the Insecure Web App</h2>
-  <p>Search anything (try XSS):</p>
-  <form method="get" action="/">
-    <input type="text" name="q" value="{{ q }}">
-    <button>Search</button>
-  </form>
-  {% if q %}
-    <div class="card">
-      <h3>Results for: {{ q|safe }}</h3>
-      <p>(Reflected XSS: the query is not escaped.)</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insecure Web App - Hackathon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Hackathon App</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Upload</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Ping</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Fetch</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+      </ul>
     </div>
-  {% endif %}
-{% endblock %}
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card shadow-sm p-4">
+    <h2 class="text-center text-primary">Welcome to the Insecure Web App</h2>
+    <p class="text-muted text-center">(Try reflected XSS search below)</p>
+
+    <form method="GET" action="/" class="mt-4">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search anything (try XSS)" value="{{ q }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+
+    {% if q %}
+    <div class="alert alert-info mt-4">
+      <strong>Results for:</strong> {{ q }}<br>
+      <small class="text-danger">(Reflected XSS: the query is not escaped.)</small>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<footer class="text-center mt-5 mb-3 text-muted">
+  &copy; 2025 Hackathon Insecure App
+</footer>
+
+</body>
+</html>
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.route("/upload")
+def upload():
+    return render_template("upload.html")
+
+@app.route("/ping")
+def ping():
+    return render_template("ping.html")
+
+@app.route("/fetch")
+def fetch():
+    return render_template("fetch.html")
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
